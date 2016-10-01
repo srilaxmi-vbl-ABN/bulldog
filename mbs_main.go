@@ -1,4 +1,14 @@
 
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strconv"
+
+	"github.com/hyperledger/fabric/core/chaincode/shim"
+)
+
 type loan struct {
 	loanAccNo int
 	loanAmt int
@@ -23,7 +33,12 @@ type trancheRatingList struct {
 	list [3]string //harcoded list of values
 }
 
-
+func main() {
+	err := shim.Start(new(SimpleChaincode))
+	if err != nil {
+		fmt.Printf("Error starting Simple chaincode: %s", err)
+	}
+}
 
 
 	
